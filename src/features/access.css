@@ -1,0 +1,282 @@
+.baac-login {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    #064e3b 0%,
+    #047857 25%,
+    #059669 50%,
+    #065f46 75%,
+    #064e3b 100%
+  );
+  background-size: 400% 400%;
+  animation: baac-background 15s ease infinite;
+}
+.login-blobs,
+.login-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+.login-blobs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  animation: baac-blob 20s ease-in-out infinite;
+  background: radial-gradient(circle, #34d399, transparent 70%);
+  width: 500px;
+  height: 500px;
+  left: -10%;
+  top: -10%;
+  opacity: 0.3;
+}
+.login-blobs span:nth-child(2) {
+  width: 400px;
+  height: 400px;
+  left: auto;
+  top: auto;
+  right: -10%;
+  bottom: -10%;
+  background: radial-gradient(circle, #a78bfa, transparent 70%);
+  animation-delay: -7s;
+  opacity: 0.2;
+}
+.login-blobs span:nth-child(3) {
+  width: 350px;
+  height: 350px;
+  left: 60%;
+  top: 50%;
+  animation-delay: -12s;
+  opacity: 0.15;
+}
+.login-blobs span:nth-child(4) {
+  width: 300px;
+  height: 300px;
+  left: 20%;
+  top: 30%;
+  background: radial-gradient(circle, #c4b5fd, transparent 70%);
+  animation-delay: -16s;
+  opacity: 0.12;
+}
+.login-orbs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(18px);
+  background: radial-gradient(circle, #ffffff35, transparent 70%);
+  animation: baac-orb 18s ease-in-out infinite;
+}
+.baac-card {
+  width: 100%;
+  max-width: 384px;
+  border: 1px solid #ffffff33;
+  border-radius: 24px;
+  background: #ffffff26;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 25px 50px -12px #0006;
+  overflow: hidden;
+  animation: baac-enter 0.65s ease both;
+}
+.baac-header {
+  position: relative;
+  text-align: center;
+  padding: 24px;
+  background: #ffffff1a;
+  border-bottom: 1px solid #ffffff1a;
+  overflow: hidden;
+}
+.baac-header:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #ffffff10, transparent);
+  animation: baac-shine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.baac-logo {
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff33;
+  box-shadow: 0 4px 12px #0002;
+  border: 2px solid #ffffff33;
+}
+.baac-logo img {
+  object-fit: contain;
+}
+.baac-header h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: white;
+}
+.baac-header p {
+  font-size: var(--font-size-sm);
+  color: #ffffffb3;
+  margin: 4px 0 0;
+}
+.baac-content {
+  padding: 24px;
+}
+.baac-content h2 {
+  font-size: var(--font-size-lg);
+  text-align: center;
+  color: white;
+  margin: 0 0 6px;
+}
+.baac-content > p {
+  text-align: center;
+  color: #ffffffb3;
+  font-size: var(--font-size-sm);
+  margin: 0 0 20px;
+}
+.baac-signin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  color: white;
+  font-weight: 600;
+  border: 1px solid #ffffff33;
+  border-radius: 12px;
+  background: #ffffff33;
+  box-shadow: 0 8px 16px #0000001a;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.baac-signin:hover {
+  background: #ffffff4d;
+  transform: scale(1.02);
+}
+.baac-signin:active {
+  transform: scale(0.98);
+}
+.baac-signin:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 4px;
+}
+.baac-partner.login-project {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  text-align: center;
+  background: #ffffff0a;
+  border: 1px solid #ffffff1a;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0 0;
+  color: #ffffff80;
+  font-size: var(--font-size-sm);
+  opacity: 1;
+}
+.baac-partner small {
+  font-size: var(--font-size-xs);
+  color: #ffffff66;
+}
+.baac-card footer {
+  text-align: center;
+  color: #ffffff80;
+  padding: 0 16px 20px;
+  font-size: var(--font-size-xs);
+}
+@keyframes baac-background {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes baac-blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 50px) scale(1.15);
+  }
+}
+@keyframes baac-orb {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-20px, -60px);
+  }
+}
+@keyframes baac-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes baac-shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (max-width: 440px) {
+  .baac-login {
+    padding: 24px 16px;
+  }
+  .baac-content {
+    padding: 24px 20px;
+  }
+  .baac-signin {
+    font-size: var(--font-size-base);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .baac-login,
+  .baac-card,
+  .login-blobs span,
+  .login-orbs span,
+  .baac-header:before {
+    animation: none;
+  }
+  .baac-signin {
+    transition: none;
+  }
+}
+.login-error {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border: 1px solid #fecaca80;
+  border-radius: 10px;
+  background: #7f1d1d66;
+  color: #fff;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.login-error p {
+  margin: 0 0 4px;
+}
+.login-error small {
+  color: #fee2e2;
+}

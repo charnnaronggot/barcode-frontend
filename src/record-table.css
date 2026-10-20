@@ -1,0 +1,77 @@
+/* Fixed column boundaries keep long document names inside their own cells. */
+.record-card .table-scroll .documents {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 1000px;
+}
+.record-card .documents .record-name-column {
+  width: 28%;
+}
+.record-card .documents .record-branch-column {
+  width: 16%;
+}
+.record-card .documents .record-status-column {
+  width: 10%;
+}
+.record-card .documents .record-signature-column {
+  width: 12%;
+}
+.record-card .documents .record-updated-column {
+  width: 12%;
+}
+.record-card .documents .record-actions-column {
+  width: 22%;
+}
+.record-card .documents th {
+  width: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.record-card .documents td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+.record-card .documents td:first-child {
+  max-width: none;
+}
+.record-card .documents td:first-child > a {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.record-card .documents .signature-state {
+  white-space: normal;
+}
+.record-card .documents .row-actions {
+  min-width: 0;
+  white-space: normal;
+}
+.record-card .documents .record-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.record-card .documents .record-actions .button {
+  margin: 0;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  padding: 6px 10px;
+}
+.record-card .table-scroll .branch-documents {
+  min-width: 640px;
+}
+.record-card .branch-documents .record-name-column {
+  width: 44%;
+}
+.record-card .branch-documents .record-signature-column {
+  width: 28%;
+}
+.record-card .branch-documents .record-actions-column {
+  width: 28%;
+}

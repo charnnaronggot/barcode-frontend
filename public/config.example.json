@@ -1,0 +1,10 @@
+{
+  "commandApi": "http://localhost:5431",
+  "queryApi": "http://localhost:5432",
+  "reportApi": "http://localhost:5433",
+  "authority": "https://oidc.app.baac.or.th/realms/baac",
+  "clientId": "<actual-public-client-id>",
+  "redirectUrl": "http://localhost:4200/home",
+  "postLogoutRedirectUri": "http://localhost:4200/login",
+  "scope": "openid profile email offline_access"
+}

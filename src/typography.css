@@ -1,0 +1,39 @@
+/* Same rem scale and fluid root size as Fertilizer Loan. */
+:root {
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-symbol: 4rem;
+  font-size: clamp(14px, 0.875rem + 0.25vw, 16px);
+}
+
+/* Native controls and PrimeNG controls must use the same text scale.
+   Use component selectors so late PrimeNG style injection cannot resize them. */
+nav a,
+.button,
+.account-menu button,
+button.p-button {
+  font-size: var(--font-size-sm);
+}
+
+.p-button .p-button-label,
+.p-select .p-select-label {
+  font-size: inherit;
+}
+
+.p-select.p-component,
+.p-select-overlay .p-select-option,
+.p-select-overlay input.p-select-filter {
+  font-size: var(--font-size-sm);
+}
+
+.page-heading p {
+  font-size: var(--font-size-sm);
+}
+
+.baac-signin {
+  font-size: var(--font-size-base);
+}

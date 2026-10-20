@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/out-tsc
+/.angular
+/public/config.json
+/playwright-report
+/test-results

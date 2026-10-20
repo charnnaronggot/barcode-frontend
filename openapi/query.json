@@ -1,0 +1,663 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Query | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5432/"
+    }
+  ],
+  "paths": {
+    "/api/barcodes": {
+      "get": {
+        "tags": ["BarcodeData"],
+        "parameters": [
+          {
+            "name": "branchId",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "barcodeStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "signatureStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeView"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeView"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/barcodes/{id}": {
+      "get": {
+        "tags": ["BarcodeData"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BarcodeView"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BarcodeView"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BarcodeView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/session": {
+      "get": {
+        "tags": ["Workspace"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionView"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionView"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/barcodes/summary": {
+      "get": {
+        "tags": ["Workspace"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryView"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryView"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/branches": {
+      "get": {
+        "tags": ["Workspace"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BranchView"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BranchView"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BranchView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/audit-logs": {
+      "get": {
+        "tags": ["Workspace"],
+        "parameters": [
+          {
+            "name": "barcodeId",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "branchId",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": ["integer", "string"],
+              "format": "int32",
+              "default": 30
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeAudit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeAudit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BarcodeAudit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Barcode/count": {
+      "get": {
+        "tags": ["Legacy"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BarcodeAudit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int64"
+          },
+          "barcodeId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["null", "integer", "string"],
+            "format": "int32"
+          },
+          "branchId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["null", "integer", "string"],
+            "format": "int32"
+          },
+          "action": {
+            "type": "string"
+          },
+          "actorIssuer": {
+            "type": "string"
+          },
+          "actorSubject": {
+            "type": "string"
+          },
+          "createdUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "detailsJson": {
+            "type": "string"
+          }
+        }
+      },
+      "BarcodeView": {
+        "required": [
+          "id",
+          "branchId",
+          "branchName",
+          "comp",
+          "tax",
+          "suffix",
+          "ref1",
+          "ref2",
+          "ref3",
+          "textLevel1",
+          "textLevel2",
+          "textLevel3",
+          "amount",
+          "rowVersion",
+          "updatedUtc",
+          "hasGeneratedPdf",
+          "hasSignedFile",
+          "status",
+          "files"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "branchId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "branchName": {
+            "type": "string"
+          },
+          "comp": {
+            "type": "string"
+          },
+          "tax": {
+            "type": "string"
+          },
+          "suffix": {
+            "type": "string"
+          },
+          "ref1": {
+            "type": "string"
+          },
+          "ref2": {
+            "type": ["null", "string"]
+          },
+          "ref3": {
+            "type": ["null", "string"]
+          },
+          "textLevel1": {
+            "type": "string"
+          },
+          "textLevel2": {
+            "type": "string"
+          },
+          "textLevel3": {
+            "type": "string"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": ["null", "number", "string"],
+            "format": "double"
+          },
+          "rowVersion": {
+            "type": "string"
+          },
+          "updatedUtc": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "hasGeneratedPdf": {
+            "type": "boolean"
+          },
+          "hasSignedFile": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentFileView"
+            }
+          },
+          "createdUtc": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          }
+        }
+      },
+      "BranchView": {
+        "required": ["id", "name", "isActive", "count"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "name": {
+            "type": ["null", "string"]
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "count": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          }
+        }
+      },
+      "Capabilities": {
+        "required": [
+          "overview",
+          "create",
+          "edit",
+          "import",
+          "generate",
+          "manageBranches",
+          "audit",
+          "uploadSigned"
+        ],
+        "type": "object",
+        "properties": {
+          "overview": {
+            "type": "boolean"
+          },
+          "create": {
+            "type": "boolean"
+          },
+          "edit": {
+            "type": "boolean"
+          },
+          "import": {
+            "type": "boolean"
+          },
+          "generate": {
+            "type": "boolean"
+          },
+          "manageBranches": {
+            "type": "boolean"
+          },
+          "audit": {
+            "type": "boolean"
+          },
+          "uploadSigned": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DocumentFileView": {
+        "required": [
+          "uuid",
+          "fileType",
+          "isActive",
+          "contentType",
+          "originalName",
+          "createdUtc",
+          "actorIssuer",
+          "actorSubject"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "originalName": {
+            "type": ["null", "string"]
+          },
+          "createdUtc": {
+            "type": ["null", "string"],
+            "format": "date-time"
+          },
+          "actorIssuer": {
+            "type": ["null", "string"]
+          },
+          "actorSubject": {
+            "type": ["null", "string"]
+          }
+        }
+      },
+      "SessionView": {
+        "required": [
+          "issuer",
+          "subject",
+          "name",
+          "isHq",
+          "branchId",
+          "branchName",
+          "capabilities"
+        ],
+        "type": "object",
+        "properties": {
+          "issuer": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "isHq": {
+            "type": "boolean"
+          },
+          "branchId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["null", "integer", "string"],
+            "format": "int32"
+          },
+          "branchName": {
+            "type": "string"
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/Capabilities"
+          }
+        }
+      },
+      "SummaryView": {
+        "required": ["total", "generated", "signed", "unsigned"],
+        "type": "object",
+        "properties": {
+          "total": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "generated": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "signed": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          },
+          "unsigned": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": ["integer", "string"],
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://oidc.app.baac.or.th/realms/baac/protocol/openid-connect/auth",
+            "tokenUrl": "https://oidc.app.baac.or.th/realms/baac/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "OpenID",
+              "profile": "Profile"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": ["openid"]
+    }
+  ],
+  "tags": [
+    {
+      "name": "BarcodeData"
+    },
+    {
+      "name": "Workspace"
+    },
+    {
+      "name": "Legacy"
+    }
+  ]
+}

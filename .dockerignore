@@ -1,0 +1,12 @@
+node_modules
+dist
+.angular
+out-tsc
+test-results
+playwright-report
+public/config.json
+**/auth-state*.json
+.env
+.env.*
+tests
+*.log

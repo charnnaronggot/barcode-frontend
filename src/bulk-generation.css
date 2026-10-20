@@ -1,0 +1,44 @@
+.bulk-progress {
+  position: fixed;
+  z-index: 900;
+  bottom: 24px;
+  right: 24px;
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px #172b4d20;
+  font-size: var(--font-size-sm);
+}
+.bulk-progress .section-heading {
+  margin-bottom: 8px;
+}
+.bulk-progress progress {
+  display: block;
+  width: 100%;
+  height: 12px;
+  margin: 12px 0;
+  accent-color: var(--brand);
+}
+.bulk-progress details {
+  max-height: 180px;
+  overflow: auto;
+}
+.bulk-progress ul {
+  padding-left: 20px;
+  white-space: normal;
+}
+.bulk-progress li {
+  margin-block: 8px;
+}
+.bulk-progress .p-button {
+  margin-top: 12px;
+}
+@media (max-width: 600px) {
+  .bulk-progress {
+    bottom: 16px;
+    right: 16px;
+  }
+}
